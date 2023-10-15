@@ -7,18 +7,25 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class AccountController {
     private final AccountService accountService;
 
+    @GetMapping("/profile")
+    public Authentication authentication(Authentication authentication){
+        return authentication;
+    }
+
     @GetMapping("/users")
-    public ResponseEntity<List<AppUser>> getAlls(){
-        return ResponseEntity.ok(accountService.listUsers());
+    public List<AppUser> getAlls(){
+        return accountService.listUsers();
     }
         @GetMapping("/users/{username}")
     public AppUser getUser(@PathVariable String username){

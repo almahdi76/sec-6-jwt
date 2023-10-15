@@ -17,11 +17,11 @@ import java.util.List;
 public class AccountService implements IAccountService {
     private final AppUserRepository appUserRepository;
     private final AppRoleRepository appRoleRepository;
-   // private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public AppUser addNewUser(AppUser appUser) {
-        //appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
+        appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
         return appUserRepository.save(appUser);
     }
 

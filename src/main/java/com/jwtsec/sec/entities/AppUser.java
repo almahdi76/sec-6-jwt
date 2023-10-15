@@ -1,23 +1,26 @@
 package com.jwtsec.sec.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Data @AllArgsConstructor@NoArgsConstructor@Builder
 @Entity
-@Data @AllArgsConstructor @NoArgsConstructor @Builder
 public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+   @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
     private List<AppRole> roles=new ArrayList<>();

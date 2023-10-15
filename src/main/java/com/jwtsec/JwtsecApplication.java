@@ -20,7 +20,7 @@ public class JwtsecApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(JwtsecApplication.class, args);
 	}
-	//@Bean
+	@Bean
 	public PasswordEncoder passwordEncoder(){
 		return new BCryptPasswordEncoder();
 	}
